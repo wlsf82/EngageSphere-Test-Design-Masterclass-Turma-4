@@ -27,3 +27,22 @@ Read the following [doc](./docs/TestCases.md) to get a list of test cases.
 ___
 
 Made with ❤️ by [Walmyr](https://walmyr.dev).
+
+
+Ótimo! 🎉 Agora seu backend e frontend foram finalizados corretamente!
+
+Se quiser verificar se todas as portas estão realmente livres, rode no Git Bash ou no CMD:
+
+bash
+Copiar
+Editar
+netstat -ano | findstr :3000
+netstat -ano | findstr :3001
+Se nenhum resultado aparecer, significa que tudo foi finalizado com sucesso! 🚀
+
+Agora, sempre que precisar iniciar o projeto novamente, basta rodar:
+
+bash
+Copiar
+Editar
+npm run start:server & npm run start:frontend & npx cypress open

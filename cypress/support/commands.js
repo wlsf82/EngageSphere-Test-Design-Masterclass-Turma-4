@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("buscarClientes", (page = 1, limit = 10, size = "All", industry = "All") => {
+  cy.request({
+    method: "GET",
+    url: `${Cypress.env("apiUrl")}/customers?page=${page}&limit=${limit}&size=${size}&industry=${industry}`,
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    return response.body;
+  });
+});
+
+  
