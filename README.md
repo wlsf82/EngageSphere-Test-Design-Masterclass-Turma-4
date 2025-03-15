@@ -27,3 +27,7 @@ Read the following [doc](./docs/TestCases.md) to get a list of test cases.
 ___
 
 Made with ❤️ by [Walmyr](https://walmyr.dev).
+
+
+Comando para rodar o projeto
+npm run start:server & npm run start:frontend & npx cypress open

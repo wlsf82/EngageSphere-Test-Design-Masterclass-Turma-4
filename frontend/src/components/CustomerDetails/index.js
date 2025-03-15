@@ -54,7 +54,7 @@ const CustomerDetails = ({ customer, onClick }) => {
           <button className={styles.showAddressBtn} onClick={showAddressHandler}>Show address</button>
         </div>
       )}
-      <Button text="Back" onClick={onClick} />
+      <Button text="Back" onClick={onClick} datatest="button-back" />
     </div>
   )
 }
