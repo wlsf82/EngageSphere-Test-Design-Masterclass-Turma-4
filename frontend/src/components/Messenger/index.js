@@ -1,37 +1,37 @@
-import { useState, useRef, useEffect } from 'react'
-import { MessageCircle, X, Send } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react';
+import { MessageCircle, X, Send } from 'lucide-react';
 
-import styles from './Messenger.module.css'
+import styles from './Messenger.module.css';
 
 export default function Messenger() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const [messageSent, setMessageSent] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageSent, setMessageSent] = useState(false);
 
-  const nameInputRef = useRef(null)
+  const nameInputRef = useRef(null);
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    setMessageSent(true)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setMessageSent(true);
     setTimeout(() => {
-      setMessageSent(false)
-    }, 3000)
-    setName('')
-    setEmail('')
-    setMessage('')
-  }
+      setMessageSent(false);
+    }, 3000);
+    setName('');
+    setEmail('');
+    setMessage('');
+  };
 
   useEffect(() => {
     if (isOpen && nameInputRef.current) {
-      nameInputRef.current.focus()
+      nameInputRef.current.focus();
     } else {
-      setName('')
-      setEmail('')
-      setMessage('')
+      setName('');
+      setEmail('');
+      setMessage('');
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <div className={styles.container}>
@@ -42,45 +42,52 @@ export default function Messenger() {
           </div>
           <div className={styles.form}>
             {messageSent ? (
-              <div role="alert" aria-live="polite" className={styles.success}>
+              <div role="alert" data-testid="message-sent" aria-live="polite" className={styles.success}>
                 Your message has been sent.
               </div>
             ) : null}
             <form onSubmit={handleSubmit}>
-              <label htmlFor="messenger-name" className='sr-only'>Type your name</label>
+              <label htmlFor="messenger-name" className="sr-only">
+                Type your name
+              </label>
               <input
                 autoComplete="off"
                 id="messenger-name"
                 type="text"
                 value={name}
-                onChange={event => setName(event.target.value)}
+                onChange={(event) => setName(event.target.value)}
                 placeholder="Type your name here"
                 className={styles.input}
                 required
                 ref={nameInputRef}
               />
-              <label htmlFor="email" className='sr-only'>Type your email</label>
+              <label htmlFor="email" className="sr-only">
+                Type your email
+              </label>
               <input
                 autoComplete="off"
                 id="email"
                 type="email"
                 value={email}
-                onChange={event => setEmail(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="Type your email here"
                 className={styles.input}
                 required
               />
-              <label htmlFor="message" className='sr-only'>Type your message</label>
+              <label htmlFor="message" className="sr-only">
+                Type your message
+              </label>
               <textarea
                 id="message"
                 value={message}
-                onChange={event => setMessage(event.target.value)}
+                onChange={(event) => setMessage(event.target.value)}
                 placeholder="Type your message here"
                 required
               />
               <button
                 type="submit"
                 className={styles.sendButton}
+                data-testid="send-button"
               >
                 <Send />
                 Send
@@ -94,8 +101,15 @@ export default function Messenger() {
         className={styles.openCloseButton}
         aria-label={isOpen ? 'Close messenger' : 'Open messenger'}
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isOpen ? (
+          <X className="w-6 h-6" data-testid="close-messenger-icon" />
+        ) : (
+          <MessageCircle
+            className="w-6 h-6"
+            data-testid="open-messenger-icon"
+          />
+        )}
       </button>
     </div>
-  )
+  );
 }

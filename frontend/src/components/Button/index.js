@@ -4,11 +4,16 @@ const Button = ({
   primary = true,
   icon = null,
   text = '',
-  onClick = () => {}
+  onClick = () => {},
+  dataTestId = ''
 }) => {
   return (
     <div className={styles.buttonContainer}>
-      <button className={primary ? styles.button : styles.secondaryButton} onClick={onClick}>
+      <button 
+        className={primary ? styles.button : styles.secondaryButton} 
+        onClick={onClick}
+        data-testid={dataTestId}
+      >
         {icon}
         {text}
       </button>

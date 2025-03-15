@@ -1,5 +1,4 @@
 import styles from './CookieConsent.module.css'
-
 import Button from '../Button'
 
 const CookieConsent = ({ giveConsentClickHandler, declineConsentClickHandler }) => {
@@ -13,11 +12,13 @@ const CookieConsent = ({ giveConsentClickHandler, declineConsentClickHandler }) 
             primary={true}
             text="Accept"
             onClick={giveConsentClickHandler}
+            dataTestId="accept-button"
           />
           <Button
             primary={false}
             text="Decline"
             onClick={declineConsentClickHandler}
+            dataTestId="decline-button"
           />
         </div>
       </div>
